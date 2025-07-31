@@ -18,7 +18,7 @@ public class PartService(
     private readonly IStationRepository _stationRepo = stationRepository;
     private readonly IRegisterRepository _registerRepo = registerRepository;
 
-    public async Task<Part> CreatePartAsync(CreatePartPayload payload)
+    public async Task<RegisterPartDto> CreatePartAsync(CreatePartPayload payload)
     {
         var station = await _stationRepo.GetByIdAsync(payload.StationId)
             ?? throw new NotFoundException("Station not found");
@@ -27,18 +27,13 @@ public class PartService(
         {
             SerialNumber = payload.SerialNumber,
             Status = EResult.PROGRESS,
-            Registers = []
         };
-
-        await repository.AddAsync(part);
-        await repository.SaveChangesAsync();
 
         var register = new Register
         {
             Station = station,
             Part = part,
             DateTime = DateTime.UtcNow
-
         };
 
         await _registerRepo.AddAsync(register);
@@ -46,7 +41,7 @@ public class PartService(
 
         part.Registers.Add(register);
 
-        return part;
+        return RegisterPartDto.Map(part);
     }
 
     public async Task<Part> UpdatePartStatusAsync(Guid id, EResult status)

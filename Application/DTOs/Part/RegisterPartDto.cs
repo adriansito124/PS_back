@@ -9,6 +9,14 @@ public record RegisterPartDto(
     string SerialNumber
 )
 {
+public static RegisterPartDto Map(Part obj)
+    {
+        return new RegisterPartDto(
+            obj.Id,
+            obj.SerialNumber
+        );
+    }
+
     public static RegisterPartDto Map(Register obj)
     {
         return new RegisterPartDto(

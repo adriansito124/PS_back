@@ -26,8 +26,11 @@ public class StationService(
             .Include(r => r.Part)
             .ToListAsync();
 
-        stations[0].Registers = [];
-
+        if (stations.Count > 0)
+        {
+            stations[0].Registers = [];
+        }
+        
         if (stations.Count > 1)
         {
             for (int i = 1; i < stations.Count; i++)

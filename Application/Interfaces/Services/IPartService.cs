@@ -7,7 +7,7 @@ namespace Domain.Services;
 
 public interface IPartService : IBaseService<Part>
 {
-    Task<Part> CreatePartAsync(CreatePartPayload payload);
+    Task<RegisterPartDto> CreatePartAsync(CreatePartPayload payload);
     Task<Part> UpdatePartStatusAsync(Guid id, EResult status);
 
 }

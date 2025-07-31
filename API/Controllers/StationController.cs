@@ -37,7 +37,7 @@ public class StationController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("id")]
+    [Route("{id}")]
     public async Task<IActionResult> DeleteStation(
         [FromServices] IStationService service, Guid id
     )
