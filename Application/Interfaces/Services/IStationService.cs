@@ -1,8 +1,9 @@
+namespace Domain.Services;
+
 using Domain.Entities;
 using Domain.Services.Primitives;
 using Application.DTOs.Station;
 
-namespace Domain.Services;
 
 public interface IStationService : IBaseService<Station>
 {

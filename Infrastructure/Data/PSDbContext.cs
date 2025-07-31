@@ -7,7 +7,7 @@ public sealed class PSDbContext(DbContextOptions<PSDbContext> options) : DbConte
 {
     public DbSet<Register> Registers => Set<Register>();
     public DbSet<Station> Stations => Set<Station>();
-    public DbSet<Part> Part => Set<Part>();
+    public DbSet<Part> Parts => Set<Part>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

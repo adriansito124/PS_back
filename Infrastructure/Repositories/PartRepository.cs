@@ -24,5 +24,6 @@ public class PartRepository : BaseRepository<Part>, IPartRepository
     {
         return await _dbSet.FirstOrDefaultAsync(s => s.SerialNumber == code);
     }
+
 }
 
