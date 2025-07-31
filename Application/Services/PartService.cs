@@ -11,11 +11,12 @@ using System.Collections.Generic;
 using System;
 
 public class PartService(
-    IPartRepository repository, IStationRepository stationRepository
+    IPartRepository repository, IStationRepository stationRepository, IRegisterRepository registerRepository
 ) : BaseService<Part>(repository), IPartService
 {
     private readonly IPartRepository _repo = repository;
     private readonly IStationRepository _stationRepo = stationRepository;
+    private readonly IRegisterRepository _registerRepo = registerRepository;
 
     public async Task<Part> CreatePartAsync(CreatePartPayload payload)
     {
@@ -31,6 +32,19 @@ public class PartService(
 
         await repository.AddAsync(part);
         await repository.SaveChangesAsync();
+
+        var register = new Register
+        {
+            Station = station,
+            Part = part,
+            DateTime = DateTime.UtcNow
+
+        };
+
+        await _registerRepo.AddAsync(register);
+        await _registerRepo.SaveChangesAsync();
+
+        part.Registers.Add(register);
 
         return part;
     }

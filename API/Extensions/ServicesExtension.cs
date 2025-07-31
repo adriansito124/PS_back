@@ -13,6 +13,8 @@ public static class ServicesExtension
 
         services.AddScoped<IStationService, StationService>();
 
+        services.AddScoped<IPartService, PartService>();
+
         return services;
     }
 }
