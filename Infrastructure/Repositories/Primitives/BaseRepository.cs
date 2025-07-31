@@ -1,22 +1,16 @@
 using Domain.Entities.Primitives;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using Application.Repositories.Primitives;
+using Domain.Repositories.Primitives;
 
-public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+public class BaseRepository<T>(DbContext context) : IBaseRepository<T> where T : BaseEntity
 {
-    protected readonly DbContext _context;
-    protected readonly DbSet<T> _dbSet;
+    protected readonly DbContext _context = context;
+    protected readonly DbSet<T> _dbSet = context.Set<T>();
 
-    public BaseRepository(DbContext context)
+    public IQueryable<T> GetAll()
     {
-        _context = context;
-        _dbSet = context.Set<T>();
-    }
-
-    public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default)
-    {
-        return await _dbSet.ToListAsync(cancellationToken);
+        return _dbSet;
     }
 
     public async Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
@@ -48,4 +42,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         return await _dbSet.AnyAsync(predicate, cancellationToken);
     }
+
+    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
+        _context.SaveChangesAsync(cancellationToken);
 }

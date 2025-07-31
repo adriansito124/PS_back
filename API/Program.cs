@@ -1,4 +1,5 @@
 using API.Extensions;
+using API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,8 @@ app.UseCors(x => x
     .AllowCredentials());
 
 app.UseAuthorization();
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.MapControllers();
 

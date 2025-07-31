@@ -1,7 +1,7 @@
-namespace Application.Repositories;
+namespace Domain.Interfaces;
 
 using Domain.Entities;
-using Application.Repositories.Primitives;
+using Domain.Repositories.Primitives;
 
 public interface IPartRepository : IBaseRepository<Part>
 {

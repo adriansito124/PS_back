@@ -17,5 +17,13 @@ public class RegisterMapping : BaseMapping<Register>
             .WithMany(s => s.Registers)
             .HasForeignKey("station_id")
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasOne(r => r.Part)
+            .WithMany(p => p.Registers)
+            .HasForeignKey("part_id")
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Property(r => r.DateTime)
+            .HasColumnName("datetime");
     }
 }

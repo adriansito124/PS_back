@@ -1,11 +1,11 @@
-namespace Application.Repositories.Primitives;
+namespace Domain.Repositories.Primitives;
 
 using Domain.Entities.Primitives;
 
 public interface IBaseRepository<T> where T : BaseEntity
 {
 
-    Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
+    IQueryable<T> GetAll();
 
     Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
@@ -14,4 +14,6 @@ public interface IBaseRepository<T> where T : BaseEntity
     void Update(T entity);
 
     void Remove(T entity);
+
+    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
