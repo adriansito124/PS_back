@@ -8,13 +8,13 @@ Edit the `API/appsettings.Development.json` file with your local SQL Server sett
 
 ```json
 "ConnectionStrings": {
-    "SqlServer": "Server=localhost;Database=BoschBooking;Trusted_Connection=True;TrustServerCertificate=True"
+    "SqlServer": "Server=localhost;Database=PS;Trusted_Connection=True;TrustServerCertificate=True"
 }
 ```
 If you're using SQL authentication:
 ```json
 "ConnectionStrings": {
-    "SqlServer": "Server=localhost;Database=BoschBooking;User Id=YOUR_USER;Password=YOUR_PASSWORD;TrustServerCertificate=True"
+    "SqlServer": "Server=localhost;Database=PS;User Id=YOUR_USER;Password=YOUR_PASSWORD;TrustServerCertificate=True"
 }
 ```
 
