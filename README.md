@@ -26,7 +26,7 @@ Run the following commands from the root of the backend solution:
 cd .\PS_back\
 ```
 ```powershell
-dotnet ef database update --p Infraestructure/Infraestructure.csproj --s API/API.csproj
+dotnet ef database update -p Infraestructure/Infraestructure.csproj -s API/API.csproj
 ```
 This will apply the existing migrations and create the database if it doesn't exist.
 
