@@ -59,4 +59,14 @@ public class RegisterService(
 
         return RegisterDto.Map(register);
     }
+
+    public async Task<IEnumerable<RegisterDto>> GetPartsByStationId(Guid stationId)
+    {
+        var registers = await _repo.GetAll()
+        .Where(r => r.Station.Id == stationId)
+        .Include(r => r.Part)
+        .ToListAsync();
+
+    return registers.Select(r => RegisterDto.Map(r));
+    }
 }

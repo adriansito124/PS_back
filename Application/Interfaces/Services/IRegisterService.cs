@@ -7,4 +7,6 @@ namespace Application.Interfaces.Services;
 public interface IRegisterService : IBaseService<Register>
 {
     Task<RegisterDto> CreateRegister(Guid stationId, CreateRegisterPayload payload);
+    Task<IEnumerable<RegisterDto>> GetPartsByStationId(Guid stationId);
+
 }

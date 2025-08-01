@@ -1,5 +1,6 @@
 using Application.DTOs.Register;
 using Application.Interfaces.Services;
+using Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -16,5 +17,15 @@ public class RegisterController : ControllerBase
     {
         var result = await service.CreateRegister(stationId, payload);
         return Ok(result);
+    }
+
+    [HttpGet("by-station/{stationId}")]
+    public async Task<IActionResult> GetPartsByStationId(
+        [FromServices] IRegisterService service, 
+        Guid stationId
+    )
+    {
+        var parts = await service.GetPartsByStationId(stationId);
+        return Ok(parts);
     }
 }

@@ -42,7 +42,7 @@ public class PartCOntroller : ControllerBase
     }
 
     [HttpDelete]
-    [Route("id")]
+    [Route("{id}")]
     public async Task<IActionResult> DeletePart(
         [FromServices] IPartService service, Guid id
     )
