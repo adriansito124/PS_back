@@ -1,5 +1,4 @@
 namespace Application.Services;
-using Application.Services;
 using Application.DTOs.Part;
 using Application.Services.Primitives;
 using Domain.Entities;
@@ -7,14 +6,13 @@ using Domain.Interfaces;
 using Domain.Services;
 using Domain.Exceptions;
 using Domain.Enums;
-using System.Collections.Generic;
 using System;
+using Application.Exceptions;
 
 public class PartService(
     IPartRepository repository, IStationRepository stationRepository, IRegisterRepository registerRepository
 ) : BaseService<Part>(repository), IPartService
 {
-    private readonly IPartRepository _repo = repository;
     private readonly IStationRepository _stationRepo = stationRepository;
     private readonly IRegisterRepository _registerRepo = registerRepository;
 

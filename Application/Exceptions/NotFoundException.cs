@@ -1,7 +1,7 @@
 using System.Net;
 using Domain.Exceptions.Primitives;
 
-namespace Domain.Exceptions;
+namespace Application.Exceptions;
 
 public class NotFoundException : AppException
 {

@@ -6,8 +6,8 @@ public class CreateStationPayload
 {
     [Required]
     [StringLength(255)]
-    public required string Name { get; set; }
+    public required string Name { get; init; }
 
     [Required]
-    public required short Index { get; set; }
+    public required short Index { get; init; }
 }

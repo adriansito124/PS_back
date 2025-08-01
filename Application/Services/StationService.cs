@@ -1,4 +1,5 @@
 using Application.DTOs.Station;
+using Application.Exceptions;
 using Application.Services.Primitives;
 using Domain.Entities;
 using Domain.Exceptions;
@@ -12,7 +13,6 @@ public class StationService(
     IStationRepository repository, IRegisterRepository registerRepository
 ) : BaseService<Station>(repository), IStationService
 {
-    private readonly IStationRepository _repo = repository;
     private readonly IRegisterRepository _registerRepo = registerRepository;
 
     public async Task<IEnumerable<Station>> GetAllStations()
@@ -24,6 +24,8 @@ public class StationService(
         var registers = await _registerRepo.GetAll()
             .Include(r => r.Station)
             .Include(r => r.Part)
+            .GroupBy(r => r.Part.Id)
+            .Select(g => g.OrderByDescending(r => r.Station.Index).First())
             .ToListAsync();
 
         if (stations.Count > 0)

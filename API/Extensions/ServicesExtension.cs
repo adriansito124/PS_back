@@ -1,3 +1,4 @@
+using Application.Interfaces.Services;
 using Application.Services;
 using Application.Services.Primitives;
 using Domain.Services;
@@ -12,8 +13,8 @@ public static class ServicesExtension
         services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
 
         services.AddScoped<IStationService, StationService>();
-
         services.AddScoped<IPartService, PartService>();
+        services.AddScoped<IRegisterService, RegisterService>();
 
         return services;
     }

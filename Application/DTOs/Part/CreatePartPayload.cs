@@ -6,8 +6,8 @@ public class CreatePartPayload
 {
     [Required]
     [StringLength(255)]
-    public required string SerialNumber { get; set; }
+    public required string SerialNumber { get; init; }
     
     [Required]
-    public required Guid StationId { get; set; }
+    public required Guid StationId { get; init; }
 }

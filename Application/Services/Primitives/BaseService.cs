@@ -1,3 +1,4 @@
+using Application.Exceptions;
 using Domain.Entities.Primitives;
 using Domain.Exceptions;
 using Domain.Repositories.Primitives;
@@ -9,7 +10,7 @@ public class BaseService<T>(
     IBaseRepository<T> repository
 ) : IBaseService<T> where T : BaseEntity
 {
-    private readonly IBaseRepository<T> _repo = repository;
+    protected readonly IBaseRepository<T> _repo = repository;
 
     public async Task DeleteAsync(Guid id)
     {
